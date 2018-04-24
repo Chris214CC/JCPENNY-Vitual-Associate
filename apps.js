@@ -9,6 +9,7 @@ mongoose.connect(mongoDB,function(err){
     if (err) throw err; //  Connect to MONGODB
     console.log('Successfully connected');
 });
+mongoose.Promise = global.Promise;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 let  discount =  Discounts({
@@ -23,6 +24,16 @@ let product =  Products({
     id: 45,
     manufacturer: 'JCPENNY'
 });
+discount.save(function(err) {
+    if (err) throw err;
+    console.log('Discounts saved successfully!');
+  });
+  
+  product.save(function(err) {
+    if (err) throw err;
+    console.log('Products saved successfully!');
+  });
+console.log(discount.name);
 http.createServer(function (request, response) {
 
    // Send the HTTP header 
