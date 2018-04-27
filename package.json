@@ -1,0 +1,14 @@
+{
+  "name": "virtualassociate",
+  "version": "1.0.0",
+  "description": "JCPenny/UNT Hackathon Challenge",
+  "main": "apps.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Christopher Romero",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
