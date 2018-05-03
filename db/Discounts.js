@@ -7,4 +7,5 @@ var DiscountsSchema =  new mongoose.Schema({
     rate: Number
 });
 const Discounts=   mongoose.model('Discounts', DiscountsSchema); 
+
 module.exports =  Discounts;  

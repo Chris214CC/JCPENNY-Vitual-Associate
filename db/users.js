@@ -20,7 +20,6 @@ var userSchema =  mongoose.Schema({
 }); 
 const User = mongoose.model('User', userSchema);
 module.exports = User; 
-module.exports.age = 68;
 module.exports.addUser = function(newUser, callback){
     newUser.save(callback); 
 };

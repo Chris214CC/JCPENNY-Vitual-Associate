@@ -6,5 +6,8 @@ var ProductsSchema = new mongoose.Schema({
     id: Number,
     manufacturer: String
 });
-const Producs =   mongoose.model('Products', ProductsSchema);
-module.exports = Producs; 
+const Products = mongoose.model('Products', ProductsSchema);
+module.exports = Products; 
+module.exports.addProduct =  (newProduct, callback) =>{
+    newProduct.save(callback); 
+};
