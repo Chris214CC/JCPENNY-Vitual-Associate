@@ -21,6 +21,10 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 apps.get('/index.html', function(req, res) {
     res.sendFile(__dirname + "/" + "index.html");
 });
+
+apps.get('/testing.html', function(req, res) {
+    res.sendFile(__dirname + "/" + "testing.html");
+});
 apps.use(bodyParser.urlencoded({ extended: true }));
 apps.use('/users', users); 
 apps.use('/products',Products);
