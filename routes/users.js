@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
-const User  = require("../db/users");
+var User  = require("../models/users");
+var config = require('../config/database'); 
+var passport = require("passport"); 
+var jwt = require('jsonwebtoken')
 
 router.post('/register', (req, res) =>{
     /* Bring in the Scheme from users.js in the folder DB. As well as the functions  
@@ -34,9 +37,6 @@ router.post('/authenticate', (req, res) =>{
     var username = req.body.username; 
     var password = req.body.password; 
 
-    console.log(username);
-    console.log(password);
-
     User.getUserByUsername(username,function(err, user){
         if(err) throw err;
         if(!user){
@@ -45,7 +45,11 @@ router.post('/authenticate', (req, res) =>{
         User.comparePassword(password, user.password, function(err, isMatch){
                 if(err) throw err; 
                 if(isMatch){
-                    return res.json({msg:"Password does match"});
+                    var token = jwt.sign(user, config.secret, {
+                        expiresIn: 604800
+                    });
+                    //return res.json({msg:"Password does match"});
+                    return res.json({ success: true, token: 'JWT ' + token });
                     }
                     else{
                     return res.json({msg:"Password does not match"});
@@ -54,5 +58,7 @@ router.post('/authenticate', (req, res) =>{
     }); 
     
 }); 
- 
+router.get('/profile', passport.authenticate('jwt', {session:false}),(req,res) =>{
+    res.send('blah');
+}); 
 module.exports = router; 

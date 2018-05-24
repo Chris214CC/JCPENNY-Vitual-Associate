@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const Products  = require("../db/Products");
+const Products  = require("../models/Products");
 router.get('/addproduct', (req, res) =>{
     /* Bring in the Scheme from Products.js in the folder DB. As well as the functions  
      */
